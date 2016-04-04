@@ -1,16 +1,27 @@
 var express = require('express');
 var router = express.Router();
+var Article = require('../models/article');
+var mongoose = require('mongoose');
 
-/* GET users listing. */
+/* GET business listing. */
 router.get('/', function(req, res, next) {
 
-  //res.send('respond with a resource');
-    
-    var usernames = ['Me', 'You', 'Them'];
-    
-    // show the users.ejs view in the browser
-    res.render('users', { title: 'Users',
-                         users: usernames });
+    Article.find(function (err, articles) {
+        // if we have an error
+        if (err) {
+            console.log(err);
+            res.end(err);
+        }
+        else {
+            // we got data back
+            // show the view and pass the data to it
+            res.render('articles/index', {
+
+                title: 'Articles',
+                articles: articles
+            });
+        }
+    });
 });
 
 
