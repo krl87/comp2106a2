@@ -30,6 +30,8 @@
             <td><%= stores[i].address %></td>
             <td><%= stores[i].phone %></td>
             <td><a href="http://<%= stores[i].website %>">http://<%= stores[i].website %></a></td>
+            <td><a href="/stores/<%= stores[i]._id %>"><button class="btn btn-primary"
+                                                             type="button">Edit</button></a></td>
         </tr>
         <% } %>
         </tbody>
