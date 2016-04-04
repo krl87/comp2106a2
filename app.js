@@ -7,11 +7,11 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 
-//auth packages
+// auth packages
 var passport = require('passport');
 var session = require('express-session');
 var flash = require('connect-flash');
-var localStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -32,14 +32,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//enable flash for showing messages
+// enable flash for showing messages
 app.use(flash());
 
 // passport config section
 app.use(session({
   secret: 'sawyerisacorgi',
   resave: true,
-  saveUnitialized: false
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -48,10 +48,23 @@ app.use(passport.session());
 // use the Account model we built
 var Account = require('./models/account');
 passport.use(Account.createStrategy());
+passport.use(new LocalStrategy(Account.authenticate()));
 
-//methods for accessing the session data
-passport.serializeUser(Account.serializeUser);
-passport.deserializeUser(Account.deserializeUser);
+
+/* passport.use(new LocalStrategy(
+    function(username, password, done) {
+      Account.findOne({ username: username }, function (err, user) {
+        if (err) { return done(err); }
+        if (!user) { return done(null, false); }
+        if (!user.verifyPassword(password)) { return done(null, false); }
+        return done(null, user);
+      });
+    }
+)); */
+
+// methods for accessing the session data
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
 
 app.use('/', routes);
 app.use('/users', users);
@@ -61,7 +74,6 @@ app.use('/auth', auth);
 // db connection
 var db = mongoose.connection;
 
-
 db.on('error', console.error.bind(console, 'DB Error: '));
 
 db.once('open', function(callback) {
@@ -69,12 +81,12 @@ db.once('open', function(callback) {
 });
 
 // connect to local instance directly
-//mongoose.connect('mongodb://localhost/test');
+// mongoose.connect('mongodb://localhost/test');
 
-//connect to mlab instance directly
-//mongoose.connect('mongodb://mackenzie:laine14@ds042128.mlab.com:42128/comp2106');
+// connect to mlab instance directly
+// mongoose.connect('mongodb://gcrfreeman:2106pass@ds056288.mlab.com:56288/comp2106');
 
-//read db connection string from our config files
+// read db connection string from our config file
 var configDb = require('./config/db.js');
 mongoose.connect(configDb.url);
 

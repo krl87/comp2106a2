@@ -1,19 +1,30 @@
 <%- include ../partials/header.ejs %>
 
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Hello, world!</h1>
+        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
+            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
+            unique.</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+    </div>
+</div>
+
 <main class="container">
     <h1>Articles</h1>
 
     <a href="/articles/add" title="Add Article">Add a new Article</a>
 
-<ul class="list-group">
-    <% for (var i = 0; i < articles.length; i++) { %>
-    <li class="list-group-item">
-        <!--link to articles/:id-->
-        <a href="/articles/<%= articles[i]._id%>" title="Read More"><%= articles[i].title %></a>
-        </li>
-    <% } %>
-</ul>
-
+    <ul class="list-group">
+        <% for (var i = 0; i < articles.length; i++) { %>
+            <li class="list-group-item">
+                <!-- link to /artices/:id -->
+                <a href="/articles/<%= articles[i]._id%>" title="Read More">
+                    <%= articles[i].title %></a>
+            </li>
+        <% } %>
+    </ul>
 </main>
 
 </body>

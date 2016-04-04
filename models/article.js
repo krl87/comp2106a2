@@ -3,10 +3,10 @@ var mongoose = require('mongoose');
 
 // define the article schema
 var articleSchema = new mongoose.Schema({
-    created: {
-        type: Date,
-        default: Date.now
-    },
+   created: {
+       type: Date,
+       default: Date.now
+   },
     title: {
         type: String,
         default: '',
@@ -21,5 +21,3 @@ var articleSchema = new mongoose.Schema({
 
 // make it public
 module.exports = mongoose.model('Article', articleSchema);
-
-
