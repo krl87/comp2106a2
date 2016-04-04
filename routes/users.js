@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var Article = require('../models/article');
+var Store = require('../models/store');
 var mongoose = require('mongoose');
 
-/* GET business listing. */
+/* GET store listing. */
 router.get('/', function(req, res, next) {
 
-    Article.find(function (err, articles) {
+    Store.find(function (err, stores) {
         // if we have an error
         if (err) {
             console.log(err);
@@ -15,10 +15,10 @@ router.get('/', function(req, res, next) {
         else {
             // we got data back
             // show the view and pass the data to it
-            res.render('articles/index', {
+            res.render('stores/index', {
 
-                title: 'Articles',
-                articles: articles
+                title: 'Pet Store Directory',
+                stores: stores
             });
         }
     });

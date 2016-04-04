@@ -9,20 +9,28 @@
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
     </div>
 </div>
-<main class="container">
     <main class="container">
-        <h1>Articles</h1>
-
-        <a href="/articles/add" title="Add Article">Add a new Article</a>
-
-        <ul class="list-group">
-            <% for (var i = 0; i < articles.length; i++) { %>
-            <li class="list-group-item">
-                <!-- link to /artices/:id -->
-                <a href="/articles/<%= articles[i]._id%>" title="Read More">
-                    <%= articles[i].title %></a>
-            </li>
+        <h1>Barrie Pet Stores</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Pet Store Name</th>
+                    <th>Address</th>
+                    <th>Phone Number</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tbody>
+            <!--starting table loop-->
+            <% for (var i = 0; i < stores.length; i++) { %>
+                <tr>
+                    <td><%= stores[i].name %></td>
+                    <td><%= stores[i].address %></td>
+                    <td><%= stores[i].phone %></td>
+                    <td><a href="<%= stores[i].website %>"><%= stores[i].website %></a></td>
+                </tr>
             <% } %>
-        </ul>
+            </tbody>
+        </table>
     </main>
 <%- include partials/footer.ejs %>

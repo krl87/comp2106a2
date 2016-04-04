@@ -8,13 +8,6 @@ router.get('/', function(req, res, next) {
         message: 'This works pretty well so far'});
 });
 
-/* GET random page */
-router.get('/random', function(req, res, next) {
-   
-    var ranNum = Math.random();
-    res.render('random', { title: 'Random',
-                          ranNum: ranNum });
-});
 
 // make this public so the rest of app can see it
 module.exports = router;

@@ -70,14 +70,14 @@ router.get('/welcome', isLoggedIn, function(req, res, next) {
 router.post('/register', function(req, res, next) {
     /* Try to create a new account using our Account model & the form values
     If we get an error display the register form again
-    If registration works, store the user and show the articles main page */
+    If registration works, store the user and show the stores main page */
     Account.register(new Account({ username: req.body.username }), req.body.password, function(err, account) {
         if (err) {
            return res.render('auth/register', { title: 'Register' });
         }
         else {
             /*req.login(account, function(err) {
-                res.redirect('/articles');
+                res.redirect('/stores');
             });*/
             res.redirect('/auth/login');
         }
