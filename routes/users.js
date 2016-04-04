@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
         else {
             // we got data back
             // show the view and pass the data to it
-            res.render('stores/index', {
+            res.render('users', {
 
                 title: 'Pet Store Directory',
                 stores: stores
