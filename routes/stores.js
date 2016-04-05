@@ -49,16 +49,16 @@ router.post('/add', isLoggedIn, function (req, res, next) {
 });
 
 //get handler for edit to show content from entry
-router.get('/edit/:id', isLoggedIn, function(req, res, next){
+router.get('edit/:id', isLoggedIn, function(req, res, next){
    //create id variable to the store id from the url
     var id = req.params.id;
-
+    
     //look up the selected store
     Store.findById(id, function(err, store){
        if (err) {
            console.log(err);
            res.end(err);
-       }
+       } 
         else {
            //show edit form
            res.render('stores/edit', {
@@ -70,25 +70,21 @@ router.get('/edit/:id', isLoggedIn, function(req, res, next){
 });
 
 //post handler for edit to update the store
-router.post('/edit/:id', isLoggedIn, function(req, res, next){
+router.post('edit/:id', isLoggedIn, function(req, res, next){
     //create id variable to the store id from the url
     var id = req.params.id;
 
     //fill the store object
-    var storeToUpdate = {
+    var store = new Store({
         name: req.body.name,
         address: req.body.address,
         phone: req.body.phone,
         website: req.body.website
-    };
-    Object.assign(storeToUpdate, Store);
-    delete storeToUpdate._id;
-
+    });
 
     //use mongoose and store model to update
-    Store.update( {_id: id}, storeToUpdate, function(err){
+    Store.update( {_id: id}, store, function(err){
        if   (err){
-
            console.log(err);
            res.end(err);
        }
