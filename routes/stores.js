@@ -75,7 +75,8 @@ router.post('/update/:id', isLoggedIn, function(req, res, next){
     var id = req.params.id;
 
     //fill the store object
-    var stores = new Stores({
+    var store = new Stores({
+        _id: id,
         name: req.body.name,
         address: req.body.address,
         phone: req.body.phone,
@@ -83,7 +84,7 @@ router.post('/update/:id', isLoggedIn, function(req, res, next){
     });
 
     //use mongoose and store model to update
-    Stores.update( {_id: id}, stores, function(err){
+    Stores.update( {_id: id}, store, function(err){
        if   (err){
            console.log(err);
            res.end(err);
