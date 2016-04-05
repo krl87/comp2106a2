@@ -29,7 +29,7 @@ router.get('/login', function(req, res, next) {
 
     // check if user is already logged in
     if (req.isAuthenticated()) {
-        res.redirect('/auth/welcome');
+        res.redirect('/stores');
     }
     else {
         // show the login page and pass in any messages we may have

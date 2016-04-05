@@ -51,17 +51,6 @@ passport.use(Account.createStrategy());
 passport.use(new LocalStrategy(Account.authenticate()));
 
 
-/* passport.use(new LocalStrategy(
-    function(username, password, done) {
-      Account.findOne({ username: username }, function (err, user) {
-        if (err) { return done(err); }
-        if (!user) { return done(null, false); }
-        if (!user.verifyPassword(password)) { return done(null, false); }
-        return done(null, user);
-      });
-    }
-)); */
-
 // methods for accessing the session data
 passport.serializeUser(Account.serializeUser());
 passport.deserializeUser(Account.deserializeUser());
@@ -80,11 +69,6 @@ db.once('open', function(callback) {
   console.log('Connected to mongodb');
 });
 
-// connect to local instance directly
-// mongoose.connect('mongodb://localhost/test');
-
-// connect to mlab instance directly
-// mongoose.connect('mongodb://gcrfreeman:2106pass@ds056288.mlab.com:56288/comp2106');
 
 // read db connection string from our config file
 var configDb = require('./config/db.js');
@@ -97,10 +81,9 @@ app.use(function(req, res, next) {
   next(err);
 });
 
+
 // error handlers
 
-// development error handler
-// will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
@@ -111,8 +94,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-// production error handler
-// no stacktraces leaked to user
+
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {

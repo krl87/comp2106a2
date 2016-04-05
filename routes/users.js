@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+//connect to store model
 var Store = require('../models/store');
 var mongoose = require('mongoose');
 

@@ -3,14 +3,12 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-            unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <h1>Barrie Pet Stores</h1>
+        <p>Your number one stop for a list of all pet stores, groomers, and boarding in the Barrie area</p>
     </div>
 </div>
 
+<!--private directory page with add/edit/delete/-->
 <main class="container">
     <h1>Barrie Pet Stores</h1>
     <a href="/stores/add" title="Add a new pet store">Add a new Pet Store</a>
@@ -25,13 +23,14 @@
         </tr>
         </thead>
         <tbody>
-        <!--starting table loop-->
+        <!--starting table loop through listings-->
         <% for (var i = 0; i < stores.length; i++) { %>
         <tr>
             <td><%= stores[i].name %></td>
             <td><%= stores[i].address %></td>
             <td><%= stores[i].phone %></td>
             <td><a href="http://<%= stores[i].website %>">http://<%= stores[i].website %></a></td>
+            <!--edit button-->
             <td><a href="/stores/update/<%= stores[i]._id %>"><button class="btn btn-primary"
                                                                     type="button">Edit</button></a></td>
         </tr>

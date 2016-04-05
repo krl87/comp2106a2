@@ -2,40 +2,40 @@
 
 <div class="jumbotron">
     <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-            jumbotron and three supporting pieces of content. Use it as a starting point to create something more
-            unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <h1>Barrie Pet Stores</h1>
+        <p>Your number one stop for a list of all pet stores, groomers, and boarding in the Barrie area</p>
     </div>
 </div>
+
+<!--edit/delete/save form-->
 
 <main class="container">
     <h1>Article Details</h1>
     <form method="post" action="<%= stores._id %>">
         <fieldset class="form-group">
             <label for="name" class="col-sm-2">Pet Store Name: </label>
-            <input name="name" id="name" required value="<%= stores.name %>" />
+            <input name="name" id="name" required value="<%= stores.name %>"/>
         </fieldset>
         <fieldset class="form-group">
             <label for="address" class="col-sm-2">Address: *</label>
-            <input name="address" id="address" required value="<%= stores.address %>" />
+            <input name="address" id="address" required value="<%= stores.address %>"/>
         </fieldset>
         <fieldset class="form-group">
             <label for="phone" class="col-sm-2">Phone Number: *</label>
-            <input name="phone" id="phone" value="<%= stores.phone %>" />
+            <input name="phone" id="phone" value="<%= stores.phone %>"/>
         </fieldset>
         <fieldset class="form-group">
             <label for="website" class="col-sm-2">Website: </label>
-            <input name="website" id="website" value="<%= stores.website %>" />
+            <input name="website" id="website" value="<%= stores.website %>"/>
         </fieldset>
         <div>
             <%= stores.created %>
         </div>
         <button class="btn btn-primary col-sm-offset-2">Save</button>
-
-        <a href="/stores/delete/<%= stores._id %>" title="Delete" class="confirmation">
-            <button class="btn btn-danger confirmation" type="button">Delete</button>
+        <!--delete confirmation-->
+        <a href="/stores/delete/<%= stores._id %>" title="Delete" onclick="return confirm('Are you sure you want to ' +
+         'delete?')">
+            <button class="btn btn-danger" type="button">Delete</button>
         </a>
     </form>
 </main>
