@@ -49,7 +49,7 @@ router.post('/add', isLoggedIn, function (req, res, next) {
 });
 
 //get handler for edit to show content from entry
-router.get('/:id', isLoggedIn, function(req, res, next){
+router.get('/update/:id', isLoggedIn, function(req, res, next){
    //create id variable to the store id from the url
     var id = req.params.id;
     
@@ -70,7 +70,7 @@ router.get('/:id', isLoggedIn, function(req, res, next){
 });
 
 //post handler for edit to update the store
-router.post('/:id', isLoggedIn, function(req, res, next){
+router.post('/update/:id', isLoggedIn, function(req, res, next){
     //create id variable to the store id from the url
     var id = req.params.id;
 
