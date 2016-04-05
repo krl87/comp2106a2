@@ -13,8 +13,8 @@ router.get('/', function(req, res, next) {
             res.end(err);
         }
         else {
-            // we got data back
-            // show the view and pass the data to it
+
+            // we have the data, now show the view and pass the data to it
             res.render('users', {
 
                 title: 'Pet Store Directory',
@@ -24,5 +24,21 @@ router.get('/', function(req, res, next) {
     });
 });
 
+//JSON output
+router.get('/api', function(req, res, next) {
+
+    Store.find(function (err, stores) {
+        // if we have an error
+        if (err) {
+            console.log(err);
+            res.send({error: err});
+        }
+        else {
+
+            // we have the data, now show the view and pass the data to it
+            res.send({stores: stores});
+        }
+    });
+});
 
 module.exports = router;

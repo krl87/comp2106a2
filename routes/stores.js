@@ -5,12 +5,12 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 //link to store model
-var Store = require('../models/store');
+var Stores = require('../models/store');
 
 //set up get handler for password protected store page
 router.get('/', isLoggedIn, function (req, res, next) {
     //use the store model to get directory listing
-    Store.find(function (err, stores) {
+    Stores.find(function (err, stores) {
         if (err) {
             console.log(err);
             res.end(err);
@@ -36,7 +36,7 @@ router.get('/add', isLoggedIn, function (req, res, next) {
 router.post('/add', isLoggedIn, function (req, res, next) {
 
     //save new pet store
-    Store.create({
+    Stores.create({
             name: req.body.name,
             address: req.body.address,
             phone: req.body.phone,
@@ -54,7 +54,7 @@ router.get('/update/:id', isLoggedIn, function(req, res, next){
     var id = req.params.id;
     
     //look up the selected store
-    Store.findById(id, function(err, store){
+    Stores.findById(id, function(err, stores){
        if (err) {
            console.log(err);
            res.end(err);
@@ -63,7 +63,7 @@ router.get('/update/:id', isLoggedIn, function(req, res, next){
            //show edit form
            res.render('stores/edit', {
               title: 'Store Details',
-               store: store
+               stores: stores
            });
        }
     });
@@ -75,7 +75,7 @@ router.post('/update/:id', isLoggedIn, function(req, res, next){
     var id = req.params.id;
 
     //fill the store object
-    var store = new Store({
+    var stores = new Stores({
         name: req.body.name,
         address: req.body.address,
         phone: req.body.phone,
@@ -83,7 +83,7 @@ router.post('/update/:id', isLoggedIn, function(req, res, next){
     });
 
     //use mongoose and store model to update
-    Store.update( {_id: id}, store, function(err){
+    Stores.update( {_id: id}, stores, function(err){
        if   (err){
            console.log(err);
            res.end(err);
@@ -101,7 +101,7 @@ router.get('/delete/:id', isLoggedIn, function(req, res, next){
 
     console.log('trying to delete');
 
-    Store.remove({_id: id}, function(err){
+    Stores.remove({_id: id}, function(err){
        if (err) {
            console.log(err);
            res.end(err);
