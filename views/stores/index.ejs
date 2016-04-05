@@ -14,6 +14,7 @@
 <main class="container">
     <h1>Barrie Pet Stores</h1>
     <a href="/stores/add" title="Add a new pet store">Add a new Pet Store</a>
+
     <table class="table table-striped">
         <thead>
         <tr>
@@ -31,12 +32,13 @@
             <td><%= stores[i].address %></td>
             <td><%= stores[i].phone %></td>
             <td><a href="http://<%= stores[i].website %>">http://<%= stores[i].website %></a></td>
-            <td><a href="/stores/<%= stores[i]._id %>"><button class="btn btn-primary"
-                                                             type="button">Edit</button></a></td>
+            <td><a href="/stores/edit/<%= stores[i]._id %>"><button class="btn btn-primary"
+                                                                    type="button">Edit</button></a></td>
         </tr>
         <% } %>
         </tbody>
     </table>
+
 </main>
 
 <%- include ../partials/footer.ejs %>
